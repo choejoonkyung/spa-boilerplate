@@ -1,25 +1,19 @@
-import setRouteChangeEvent, { back, push, replace } from "./utils/Router";
+import ProductListPage from "./pages/ProductListPage";
+import setRouteChangeEvent from "./utils/Router";
+import "./global.css";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App($rootEle) {
   this.route = () => {
     const { pathname } = location;
-    $rootEle.innerHTML = "<button>상품 목록</button>";
-
-    const click = (e) => {
-      back();
-      $rootEle.removeEventListener("click", click);
-    };
-
-    $rootEle.addEventListener("click", click);
+    $rootEle.innerHTML = "";
 
     if (pathname === "/") {
-      console.log("/ path");
-      return;
+      new ProductListPage({ $target: $rootEle }).render();
     }
 
-    if (pathname === "/test") {
-      console.log("test path");
-      return;
+    if (pathname === "/products/") {
+      new ProductDetailPage({ $target: $rootEle }).render();
     }
   };
 

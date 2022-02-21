@@ -1,0 +1,13 @@
+.product-list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-wrapper {
+  padding: 15px;
+  border: 1px solid #b0b0b0;
+  margin-bottom: 16px;
+  cursor: pointer;
+  border-radius: 16px;
+}
