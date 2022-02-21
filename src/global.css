@@ -1,0 +1,5 @@
+.hidden-heading {
+  visibility: hidden;
+  position: absolute;
+  width: 1px;
+}
