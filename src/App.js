@@ -12,7 +12,7 @@ function App($rootEle) {
       new ProductListPage({ $target: $rootEle }).render();
     }
 
-    if (pathname === "/products/") {
+    if (pathname.includes("/products/")) {
       new ProductDetailPage({ $target: $rootEle }).render();
     }
   };

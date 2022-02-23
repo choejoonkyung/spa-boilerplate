@@ -6,21 +6,33 @@ function ProductDetailPage({ $target }) {
   $page.className = "product-detail-page";
   $page.innerHTML = "<h2>상품정보</h2>";
 
+  const { pathname } = location;
+  const [, , id] = pathname.split("/");
+
+  this.state = {
+    id,
+    product: null,
+  };
+
   this.setState = (state) => {
     this.state = state;
     this.render();
   };
 
   this.fetchProduct = async () => {
-    const { productId } = this.state;
-    const product = await request(`/posts/${productId}`);
+    const { id: postId } = this.state;
+    const product = await request(`/posts/${postId}`);
+    const detailView = new DetailView({
+      $target: $page,
+      product: product,
+    });
   };
 
   this.render = () => {
     $target.appendChild($page);
   };
 
-  fetchProducts();
+  this.fetchProduct();
 }
 
 export default ProductDetailPage;

@@ -1,8 +1,10 @@
-function DetailView({ $target, initialState }) {
+import { back } from "../../utils/Router";
+
+function DetailView({ $target, product }) {
   const $wrapper = document.createElement("section");
   $target.appendChild($wrapper);
 
-  this.state = initialState;
+  this.state = product;
 
   this.setState = (state) => {
     this.state = state;
@@ -11,25 +13,36 @@ function DetailView({ $target, initialState }) {
 
   this.render = () => {
     if (!this.state) {
-      return;
+      $wrapper.innerHTML = `
+      ${`
+        <p>loading</p>
+        `}`;
+    } else {
+      $wrapper.innerHTML = `
+        ${`
+          <button>뒤로가기</button>
+          <div class="product">
+                <h3>${product.title}</h3>
+                <p>${product.body}~</p>
+          </div>
+          `}`;
     }
-
-    $ul.innerHTML = `
-      ${this.state
-        .map(
-          (product) =>
-            `
-          <li class="product-wrapper" data-id=${product.id}>
-            <div class="product">
-              <h3>${product.title}</h3>
-              <p>${product.body}~</p>
-            </div>
-          </li>
-        `
-        )
-        .join("")}`;
   };
 
+  this.eventListener = () => {
+    const click = (e) => {
+      const $button = e.target.closest("button");
+
+      if ($button) {
+        back();
+        $wrapper.removeEventListener("click", click);
+      }
+    };
+
+    $wrapper.addEventListener("click", click);
+  };
+
+  this.eventListener();
   this.render();
 }
 

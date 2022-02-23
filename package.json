@@ -8,10 +8,23 @@
     "build": "webpack",
     "dev": "webpack serve"
   },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ]
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/runtime": "^7.17.2"
+    "@babel/runtime": "^7.17.2",
+    "@babel/runtime-corejs3": "^7.17.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
