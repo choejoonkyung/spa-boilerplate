@@ -20,6 +20,7 @@ function ProductList({ $target, initialState }) {
 
   this.render = () => {
     if (!this.state) {
+      $ul.innerHTML = `loading...`;
       return;
     }
 

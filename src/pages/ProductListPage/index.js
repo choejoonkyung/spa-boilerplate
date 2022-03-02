@@ -6,25 +6,26 @@ function ProductListPage({ $target }) {
   $page.className = "product-list-page";
   $page.innerHTML = "<h2>상품리스트</h2>";
 
+  const productlist = new ProductList({
+    $target: $page,
+    initialState: this.state,
+  });
+
   this.setState = (state) => {
     this.state = state;
     this.render();
   };
 
-  const fetchProducts = async () => {
+  this.fetchProducts = async () => {
     const products = await request("/posts");
-
-    new ProductList({
-      $target: $page,
-      initialState: products,
-    });
+    productlist.setState(products);
   };
 
   this.render = () => {
     $target.appendChild($page);
   };
 
-  fetchProducts();
+  this.fetchProducts();
 }
 
 export default ProductListPage;
