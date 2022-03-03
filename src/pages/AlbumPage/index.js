@@ -1,5 +1,9 @@
 import ImgOptimaize from "../../components/utils/ImgOptimaize";
+import Client from "../../utils/Client";
 import "./style.css";
+
+const client = new Client();
+const instance = client.getInstance();
 
 class AlbumPage {
   constructor({ $target }) {
@@ -14,10 +18,16 @@ class AlbumPage {
     $target.appendChild($img);
 
     this.render();
+    this._getPosts();
   }
 
   setState = (nextState) => {
     this.state = nextState;
+  };
+
+  _getPosts = async () => {
+    const { data } = await instance.get("/posts");
+    console.log(data);
   };
 
   render = () => {};
